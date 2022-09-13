@@ -1,5 +1,5 @@
 import { Layout, Menu, Popconfirm } from 'antd'
-import { Outlet } from 'react-router-dom'
+import { Outlet, Link, useLocation} from 'react-router-dom'
 import {
   HomeOutlined,
   DiffOutlined,
@@ -11,6 +11,7 @@ import './index.scss'
 const { Header, Sider } = Layout
 
 const GeekLayout = () => {
+  const {pathname} = useLocation();
   return (
     <Layout>
       <Header className="header">
@@ -29,17 +30,18 @@ const GeekLayout = () => {
           <Menu
             mode="inline"
             theme="dark"
-            defaultSelectedKeys={['1']}
+            defaultSelectedKeys={[pathname]}  /* 按钮的高亮，默认高亮Overview。 Path路径决定高亮的盒子(useLocation 能做到) */
             style={{ height: '100%', borderRight: 0 }}
           >
-            <Menu.Item icon={<HomeOutlined />} key="1">
-              Overview
+            <Menu.Item icon={<HomeOutlined />} key="/">
+              {/* Link, used to redirect  */}
+              <Link to={'/'}>Overview</Link>
             </Menu.Item>
-            <Menu.Item icon={<DiffOutlined />} key="2">
-              Manage you works
+            <Menu.Item icon={<DiffOutlined />} key="/article">
+              <Link to={'/article'}>Manage you works</Link>
             </Menu.Item>
-            <Menu.Item icon={<EditOutlined />} key="3">
-              Publish
+            <Menu.Item icon={<EditOutlined />} key="/publish">
+              <Link to = {'/publish'}>Publish</Link>
             </Menu.Item>
           </Menu>
         </Sider>
