@@ -1,17 +1,23 @@
 //token持久化
-//封装ls存取token
+//封装localStore存取token
 
 const key = 'pc-key'
 
 //存取删三个token
-const setToken = () =>{
-    window.localStorage.setItem(key, toekn)
+const setToken = (token) =>{
+    return window.localStorage.setItem(key, token)
 }
 
 const getToken = () =>{
-    window.localStorage.getItem(key)
+    return window.localStorage.getItem(key)
 }
 
 const removeToken = () =>{
-    window.localStorage.removeItem(key)
+    return window.localStorage.removeItem(key)
+}
+
+export {
+    setToken,
+    getToken,
+    removeToken
 }
