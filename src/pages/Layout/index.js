@@ -1,4 +1,5 @@
 import { Layout, Menu, Popconfirm } from 'antd'
+import { Outlet } from 'react-router-dom'
 import {
   HomeOutlined,
   DiffOutlined,
@@ -42,7 +43,9 @@ const GeekLayout = () => {
             </Menu.Item>
           </Menu>
         </Sider>
-        <Layout className="layout-content" style={{ padding: 20 }}>content</Layout>
+        <Layout className="layout-content" style={{ padding: 20 }}>
+          <Outlet /> {/* 二级路由出口 */}
+        </Layout>
       </Layout>
     </Layout>
   )
