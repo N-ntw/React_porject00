@@ -7,22 +7,22 @@ import {
   LogoutOutlined
 } from '@ant-design/icons'
 import './index.scss'
+import { useStore } from '@/store'
+import UserStore from '@/store/user.Store'
+import { useEffect } from 'react'
 
 const { Header, Sider } = Layout
 
+
 const GeekLayout = () => {
   const {pathname} = useLocation();
+
   return (
     <Layout>
       <Header className="header">
         <div className="logo" />
         <div className="user-info">
-          <span className="user-name">user.name</span>
-          <span className="user-logout">
-            <Popconfirm title="Are you sure you want to exit" okText="Exit" cancelText="Go back">
-              <LogoutOutlined /> Exit
-            </Popconfirm>
-          </span>
+          <span className="user-name">{userStore.userInfo.name}</span>
         </div>
       </Header>
       <Layout>

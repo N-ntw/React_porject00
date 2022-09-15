@@ -1,20 +1,14 @@
-//统一管理
 import React from "react"
-import LoginStore from "./login.Store"
+import LoginStore from './login.Store'
+import UserStore from './user.Store'
 
 class RootStore {
-    constructor() {
-        this.loginStore = new LoginStore()
-        //...
-    }
+  // 组合模块
+  constructor() {
+    this.loginStore = new LoginStore()
+    this.userStore = new UserStore()
+  }
 }
 
-//实例化root
-const rootStore = new RootStore()
-
-//导出 useStore context
-const context = React.createContext(rootStore)
-
-const useStore = () => React.useContext(context)
-
-export {useStore}
+const StoresContext = React.createContext(new RootStore())
+export const useStore = () => React.useContext(StoresContext)
