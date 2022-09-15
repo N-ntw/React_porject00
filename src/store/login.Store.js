@@ -22,5 +22,9 @@ class LoginStore {
     setToken(this.token)
 
   }
+  loginOut = () =>{
+    this.token = ''
+    removeToken()
+  }
 }
 export default LoginStore
