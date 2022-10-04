@@ -1,6 +1,6 @@
 import { Layout, Menu, Popconfirm } from 'antd'
-import { Outlet, Link, useLocation, useNavigate} from 'react-router-dom'
-import {observer} from 'mobx-react-lite'
+import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom'
+import { observer } from 'mobx-react-lite'
 import {
   HomeOutlined,
   DiffOutlined,
@@ -9,67 +9,70 @@ import {
 } from '@ant-design/icons'
 import './index.scss'
 import { useStore } from '@/store'
-import UserStore from '@/store/user.Store'
 import { useEffect } from 'react'
-import LoginStore from '@/store/login.Store'
 
 const { Header, Sider } = Layout
 
-
 const GeekLayout = () => {
-  const {pathname} = useLocation();
-  const {userStore, loginStore} = useStore()
-  
-  useEffect (() => {
+  const { pathname } = useLocation()
+  const { userStore, loginStore, channelStore } = useStore()
+
+  useEffect(() => {
     userStore.getUserInfo()
-  }, [userStore])
+    channelStore.loadChannelList()
+  }, [userStore, channelStore])
 
-  // Confirm logout
-  const navigate = useNavigate()  //useNavigate: use to redirect 
-  const onLogout = () => {
-      loginStore.loginOut()
-      navigate('/login')
+  // 确定退出
+  const navigate = useNavigate()
+  const onConfirm = () => {
+    // 退出登录 删除token 跳回到登录
+    loginStore.loginOut()
+    navigate('/login')
   }
-
   return (
     <Layout>
       <Header className="header">
         <div className="logo" />
         <div className="user-info">
-          <span className="user-name">{userStore.userInfo.mobile}</span>
-
-          {/* Log out session */}
-          <span className='user-logout'>
-            <Popconfirm 
-            onConfirm={onLogout}
-            title = "Are you sure to log out?" okText="Logout" cancelText = "Cancle">
-              <LogoutOutlined/> Logout
+          <span className="user-name">{userStore.userInfo.name}</span>
+          <span className="user-logout">
+            <Popconfirm
+              onConfirm={onConfirm}
+              title="是否确认退出？" okText="退出" cancelText="取消">
+              <LogoutOutlined /> 退出
             </Popconfirm>
           </span>
         </div>
       </Header>
       <Layout>
         <Sider width={200} className="site-layout-background">
+          {/* 高亮原理：defaultSelectedKeys === item key */}
+          {/* 获取当前激活的path路径？ */}
+          {/* 
+             defaultSelectedKeys: 初始化渲染的时候生效一次
+             selectedKeys: 每次有值更新时都会重新渲染视图
+          */}
           <Menu
             mode="inline"
             theme="dark"
-            defaultSelectedKeys={[pathname]}  /* 按钮的高亮，默认高亮Overview。 Path路径决定高亮的盒子(useLocation 能做到) */
+            defaultSelectedKeys={pathname}
+            selectedKeys={pathname}
             style={{ height: '100%', borderRight: 0 }}
           >
             <Menu.Item icon={<HomeOutlined />} key="/">
-              {/* Link, used to redirect  */}
-              <Link to={'/'}>Overview</Link>
+              <Link to='/'>数据概览</Link>
             </Menu.Item>
             <Menu.Item icon={<DiffOutlined />} key="/article">
-              <Link to={'/article'}>Manage you works</Link>
+              <Link to="/article">内容管理</Link>
             </Menu.Item>
             <Menu.Item icon={<EditOutlined />} key="/publish">
-              <Link to = {'/publish'}>Publish</Link>
+              <Link to='/publish'> 发布文章</Link>
             </Menu.Item>
           </Menu>
         </Sider>
         <Layout className="layout-content" style={{ padding: 20 }}>
-          <Outlet /> {/* 二级路由出口 */}
+          {/* 二级路由出口 */}
+          <Outlet />
         </Layout>
       </Layout>
     </Layout>

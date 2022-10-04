@@ -1,26 +1,25 @@
-// Chech if there exist token
-//2. Then render if exist
-//3. otherwise, redirect to login page
+// 1. 判断token是否存在
+// 2. 如果存在 直接正常渲染
+// 3. 如果不存在 重定向到登录路由
 
-// What we need: 高阶组件: 把一个组件当成另外一个组件的参数传入
-// 然后通过判断， 返回新的组件
-import {getToken} from '@/utils'
-// Navigate 重定向组件
-import {Navigate} from 'react-router-dom'
+// 高阶组件:把一个组件当成另外一个组件的参数传入
+// 然后通过一定的判断 返回新的组件
+import { getToken } from '@/utils'
+import { Navigate } from 'react-router-dom'
 
-function AuthRoute ({ children }) {
-    const isToken = getToken()
-    if (isToken) {
-      return <>{children}</>
-    } else {
-        //没有token则用Navigate组件重定向
-      return <Navigate to="/login" replace />
-    }
+function AuthComponent ({ children }) {
+  const isToken = getToken()
+  if (isToken) {
+    return <>{children}</>
+  } else {
+    return <Navigate to="/login" replace />
   }
-
-export {
-    AuthRoute
 }
 
-  //示例用法
-  //<AuthRoute> <Layout/> <AuthRoute>
+// <AuthComponent> <Layout/> </AuthComponent>
+// 登录：<><Layout/></>
+// 非登录：<Navigate to="/login" replace />
+
+export {
+  AuthComponent
+}
