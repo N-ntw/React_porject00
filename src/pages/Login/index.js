@@ -16,7 +16,7 @@ function Login () {
     // 跳转首页
     navigate('/', { replace: true })
     // 提示用户
-    message.success('登录成功')
+    message.success('Login Successd')
   }
 
   return (
@@ -39,27 +39,27 @@ function Login () {
             rules={[
               {
                 required: true,
-                message: '请输入手机号',
+                message: 'Please enter your phone number',
               },
               {
                 pattern: /^1[3-9]\d{9}$/,
-                message: '请输入正确的手机号',
+                message: 'Incorrect phone number',
                 validateTrigger: 'onBlur'
               }
             ]}
           >
-            <Input size="large" placeholder="请输入手机号" />
+            <Input size="large" placeholder="Please enter your phone number" />
           </Form.Item>
           <Form.Item
             name="code"
             rules={[
               {
                 required: true,
-                message: '请输入密码',
+                message: 'Please enter password',
               },
               {
                 len: 6,
-                message: '请输入6位密码',
+                message: 'Please enter 6 digit password',
                 validateTrigger: 'onBlur'
               }
             ]}
@@ -72,13 +72,13 @@ function Login () {
 
           >
             <Checkbox className="login-checkbox-label">
-              我已阅读并同意「用户协议」和「隐私条款」
+              I agree to all the statement
             </Checkbox>
           </Form.Item>
 
           <Form.Item>
             <Button type="primary" htmlType="submit" size="large" block>
-              登录
+              Login
             </Button>
           </Form.Item>
         </Form>
