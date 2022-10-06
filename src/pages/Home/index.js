@@ -13,14 +13,14 @@ const Home = () => {
     <div>
       {/* 渲染Bar组件 */}
       <Bar
-        title='主流框架满意度'
-        xData={['react', 'vue', 'angular']}
-        yData={[30, 40, 50]}
+        title='Articles viewed this week'
+        xData={['Article1', 'Article2', 'Article3', 'Article4']}
+        yData={[345,105,489,621]}
         style={{ width: '500px', height: '400px' }} />
       <Bar
-        title='主流框架使用度'
-        xData={['react', 'vue', 'angular']}
-        yData={[60, 70, 80]}
+        title='New Subscription'
+        xData={['Today', 'Yesterday', 'This Week', 'This Month']}
+        yData={[0, 67, 305, 2009]}
         style={{ width: '300px', height: '200px' }} />
     </div>
   )
