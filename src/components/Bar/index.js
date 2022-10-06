@@ -18,7 +18,7 @@ function Bar ({ title, xData, yData, style }) {
       yAxis: {},
       series: [
         {
-          name: '销量',
+          name: 'sales',
           type: 'bar',
           data: yData
         }
