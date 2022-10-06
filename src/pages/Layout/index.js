@@ -38,8 +38,8 @@ const GeekLayout = () => {
           <span className="user-logout">
             <Popconfirm
               onConfirm={onConfirm}
-              title="是否确认退出？" okText="退出" cancelText="取消">
-              <LogoutOutlined /> 退出
+              title="Confirm exit?" okText="Exit" cancelText="Cancel">
+              <LogoutOutlined /> Logout
             </Popconfirm>
           </span>
         </div>
@@ -60,13 +60,13 @@ const GeekLayout = () => {
             style={{ height: '100%', borderRight: 0 }}
           >
             <Menu.Item icon={<HomeOutlined />} key="/">
-              <Link to='/'>数据概览</Link>
+              <Link to='/'>Overview</Link>
             </Menu.Item>
             <Menu.Item icon={<DiffOutlined />} key="/article">
-              <Link to="/article">内容管理</Link>
+              <Link to="/article">Articles</Link>
             </Menu.Item>
             <Menu.Item icon={<EditOutlined />} key="/publish">
-              <Link to='/publish'> 发布文章</Link>
+              <Link to='/publish'> Publish</Link>
             </Menu.Item>
           </Menu>
         </Sider>
