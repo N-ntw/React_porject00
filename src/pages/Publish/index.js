@@ -90,7 +90,7 @@ const Publish = () => {
 
     // 跳转列表 提示用户
     navigate('/article')
-    message.success(`${id ? '更新成功' : '发布成功'}`)
+    message.success(`${id ? 'Updated' : 'Published'}`)
   }
 
   // 编辑功能
@@ -125,9 +125,9 @@ const Publish = () => {
         title={
           <Breadcrumb separator=">">
             <Breadcrumb.Item>
-              <Link to="/home">首页</Link>
+              <Link to="/home">Main Page</Link>
             </Breadcrumb.Item>
-            <Breadcrumb.Item>{id ? '编辑' : '发布'}文章</Breadcrumb.Item>
+            <Breadcrumb.Item>{id ? 'Edit' : 'Publish'}Articles</Breadcrumb.Item>
           </Breadcrumb>
         }
       >
@@ -139,18 +139,18 @@ const Publish = () => {
           form={form}
         >
           <Form.Item
-            label="标题"
+            label="Title"
             name="title"
-            rules={[{ required: true, message: '请输入文章标题' }]}
+            rules={[{ required: true, message: 'Please Input Title for the Article' }]}
           >
-            <Input placeholder="请输入文章标题" style={{ width: 400 }} />
+            <Input placeholder="Please Input Title for the Article" style={{ width: 400 }} />
           </Form.Item>
           <Form.Item
-            label="频道"
+            label="Channel"
             name="channel_id"
-            rules={[{ required: true, message: '请选择文章频道' }]}
+            rules={[{ required: true, message: 'Please Select the Channel' }]}
           >
-            <Select placeholder="请选择文章频道" style={{ width: 400 }}>
+            <Select placeholder="Please Select the Channel" style={{ width: 400 }}>
               {channelStore.channelList.map(item => (
                 <Option key={item.id} value={item.id}>{item.name}</Option>
               ))}
@@ -158,12 +158,12 @@ const Publish = () => {
             </Select>
           </Form.Item>
 
-          <Form.Item label="封面">
+          <Form.Item label="Title">
             <Form.Item name="type">
               <Radio.Group onChange={radioChange}>
-                <Radio value={1}>单图</Radio>
-                <Radio value={3}>三图</Radio>
-                <Radio value={0}>无图</Radio>
+                <Radio value={1}>Single Picture</Radio>
+                <Radio value={3}>Three Picture</Radio>
+                <Radio value={0}>No Picture</Radio>
               </Radio.Group>
             </Form.Item>
             {imgCount > 0 && (
@@ -188,9 +188,9 @@ const Publish = () => {
           {/* 这里的富文本组件 已经被Form.Item控制 */}
           {/* 它的输入内容 会在onFinished回调中收集起来 */}
           <Form.Item
-            label="内容"
+            label="Content"
             name="content"
-            rules={[{ required: true, message: '请输入文章内容' }]}
+            rules={[{ required: true, message: 'Please Input Article Content' }]}
           >
             <ReactQuill theme="snow" />
           </Form.Item>
@@ -198,7 +198,7 @@ const Publish = () => {
           <Form.Item wrapperCol={{ offset: 4 }}>
             <Space>
               <Button size="large" type="primary" htmlType="submit">
-                {id ? '更新' : '发布'}文章
+                {id ? 'Updated' : 'Publish'}文章
               </Button>
             </Space>
           </Form.Item>
